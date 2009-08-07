@@ -57,9 +57,9 @@ def OnMessageStatus(Message, Status):
         sendNotification('Skype', topic, message)
       if Status == 'SENT':
         message = 'Myself: ' + Message.Body
-        lastTime = time
         if( verbose ):
           print message
+    lastTime = time
 
 def sendNotification(appname, event, description):
   if( not PROWL_API_KEY ):
