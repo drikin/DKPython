@@ -100,8 +100,8 @@ def main(argv=None):
     print >> sys.stderr, "\t for help use --help"
     return 2
   
-  skype.OnAttachmentStatus = OnAttach;
-  skype.OnMessageStatus = OnMessageStatus;
+  skype.OnAttachmentStatus  = OnAttach;
+  skype.OnMessageStatus     = OnMessageStatus;
   print('******************************************************************************');
   print 'Username      : ' + OWN_DISPLAY_NAME
   print 'Prowl API Key : ' + PROWL_API_KEY
