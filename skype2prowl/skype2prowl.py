@@ -14,6 +14,10 @@ import datetime
 import Skype4Py
 import prowlpy
 
+# force utf-8 to workaround unicode problem
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 PROWL_API_KEY     = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 OWN_DISPLAY_NAME  = ""
 lastTime          = datetime.datetime.now()
@@ -39,11 +43,11 @@ def OnAttach(status):
     print('******************************************************************************');
 
 def OnMessageStatus(Message, Status):
+  global lastTime
   if Status == 'RECEIVED' or Status == 'SENT':
-    global lastTime
     time        = Message.Datetime
     if( time - lastTime > deltaTime):
-      topic       = Message.Chat.Topic[:10]
+      topic       = Message.Chat.Topic[:20]
       displayName = Message.FromDisplayName
       if( not topic ):
         topic = displayName
@@ -53,10 +57,9 @@ def OnMessageStatus(Message, Status):
         sendNotification('Skype', topic, message)
       if Status == 'SENT':
         message = 'Myself: ' + Message.Body
+        lastTime = time
         if( verbose ):
           print message
-    
-    lastTime = time
 
 def sendNotification(appname, event, description):
   if( not PROWL_API_KEY ):
@@ -64,7 +67,7 @@ def sendNotification(appname, event, description):
   try:
     if( verbose ):
       print appname + ' ' + event + ': ' + description
-    prowl.add(appname.encode('utf-8'), event.encode('utf-8'), description.encode('utf-8'))
+    prowl.add(unicode(appname).encode('utf8'), unicode(event).encode('utf8'), unicode(description).encode('utf8'))
   except Exception,msg:
     print msg
 
@@ -105,11 +108,13 @@ def main(argv=None):
   print('******************************************************************************');
   print 'Username      : ' + OWN_DISPLAY_NAME
   print 'Prowl API Key : ' + PROWL_API_KEY
+  print 'Encodeing     : ' + sys.getdefaultencoding()
   print 'Connecting to Skype..'
   
   skype.Attach();
   global prowl
   prowl = prowlpy.Prowl(PROWL_API_KEY)
+
   
   # ----------------------------------------------------------------------------------------------------
   # Looping until user types 'exit'
