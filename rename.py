@@ -14,7 +14,9 @@ import re
 help_message = '''
 The help message goes here.
 '''
-_patterns = [r'^[\(|\[](.*?)[\)|\])]\s*']
+_patterns = [r'^[\(|\[](.*?)[\)|\])][\s|\.]*',
+             r'^\d{2,4}[-|/|_]?\d{1,2}[-|/|_]?\d{1,2}',
+             r'^\s*']
 
 class Usage(Exception):
   def __init__(self, msg):
@@ -37,7 +39,7 @@ def rename(path, file):
     new = p.sub('', new)
   # print(os.path.join(path, file))
   print('new: ' + new)
-  os.rename(os.path.join(path, file), os.path.join(path, new))
+  # os.rename(os.path.join(path, file), os.path.join(path, new))
 
 def main(argv=None):
   if argv is None:
