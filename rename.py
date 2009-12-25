@@ -27,7 +27,7 @@ def rename(path, file, execute):
   print('org: ' + file)
   
   # find date string
-  p = re.compile(r'(\d{2,4})[-|/|_]?(\d{1,2})[-|/|_]?(\d{1,2})')
+  p = re.compile(r'(\d{2,4})[-|/|_|\.]?(\d{1,2})[-|/|_\.]?(\d{1,2})')
   m = p.search(file)
   if m:
     root, ext = os.path.splitext(file)
