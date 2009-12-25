@@ -16,7 +16,8 @@ The help message goes here.
 '''
 _patterns = [r'^\s*',
              r'^[\(|\[](.*?)[\)|\])][\s|\.]*',
-             r'^\d{2,4}[-|/|_]?\d{1,2}[-|/|_]?\d{1,2}']
+             r'^\d{2,4}[-|/|_]?\d{1,2}[-|/|_]?\d{1,2}',
+             r'^\s*']
 
 class Usage(Exception):
   def __init__(self, msg):
