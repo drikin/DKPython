@@ -14,15 +14,15 @@ import re
 help_message = '''
 The help message goes here.
 '''
-_patterns = [r'^[\(|\[](.*?)[\)|\])][\s|\.]*',
-             r'^\d{2,4}[-|/|_]?\d{1,2}[-|/|_]?\d{1,2}',
-             r'^\s*']
+_patterns = [r'^\s*',
+             r'^[\(|\[](.*?)[\)|\])][\s|\.]*',
+             r'^\d{2,4}[-|/|_]?\d{1,2}[-|/|_]?\d{1,2}']
 
 class Usage(Exception):
   def __init__(self, msg):
     self.msg = msg
 
-def rename(path, file):
+def rename(path, file, execute):
   print('org: ' + file)
   
   # find date string
@@ -39,21 +39,25 @@ def rename(path, file):
     new = p.sub('', new)
   # print(os.path.join(path, file))
   print('new: ' + new)
-  # os.rename(os.path.join(path, file), os.path.join(path, new))
+  if execute:
+    os.rename(os.path.join(path, file), os.path.join(path, new))
 
 def main(argv=None):
   if argv is None:
     argv = sys.argv
   try:
     try:
-      opts, args = getopt.getopt(argv[1:], "ho:d:v", ["help", "output=", "dir="])
+      opts, args = getopt.getopt(argv[1:], "ho:d:vx", ["help", "output=", "dir="])
     except getopt.error, msg:
       raise Usage(msg)
   
+    execute = False
     # option processing
     for option, value in opts:
       if option == "-v":
         verbose = True
+      if option == "-x":
+        execute = True
       if option in ("-h", "--help"):
         raise Usage(help_message)
       if option in ("-d", "--dir"):
@@ -63,7 +67,7 @@ def main(argv=None):
   
     for (root, dirs, files) in os.walk(target):
       for file in files:
-        rename(root, file)
+        rename(root, file, execute)
           
   except Usage, err:
     print >> sys.stderr, sys.argv[0].split("/")[-1] + ": " + str(err.msg)
