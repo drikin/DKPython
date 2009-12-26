@@ -28,7 +28,11 @@ class untitled(unittest.TestCase):
                   "[20090102] bcd.mpg",
                   "[20090103]   efg.mp4",
                   "[drama] abc (2009.03.22 1440x1080i x264).mp4",
-                  "(drama) abc (2009.03.22 1440x1080i x264).mp4"
+                  "(drama) abc (2009.03.22 1440x1080i x264).mp4",
+                  "Nodame Cantabile in Europe SP2 (2009 Version) [720p x.264 AAC][Ueno Juri].mkv",
+                  "2009.Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi",
+                  "2009...Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi",
+                  "2009.10.Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi"
                   ]
     
     os.mkdir(test_dir)
