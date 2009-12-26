@@ -32,7 +32,8 @@ class untitled(unittest.TestCase):
                   "Nodame Cantabile in Europe SP2 (2009 Version) [720p x.264 AAC][Ueno Juri].mkv",
                   "2009.Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi",
                   "2009...Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi",
-                  "2009.10.Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi"
+                  "2009.10.Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi",
+                  "Abc Def (2009.01.01).mp4"
                   ]
     
     os.mkdir(test_dir)

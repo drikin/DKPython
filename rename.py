@@ -15,8 +15,8 @@ help_message = '''
 The help message goes here.
 '''
 _patterns = [r'^\s*',
-             r'^[\(|\[](.*?)[\)|\])][\s|\.]*',
-             r'^\d{2,4}[-|/|_]?\d{1,2}[-|/|_]?\d{1,2}',
+             r'\s?[\(|\[](.*?)[\)|\])][\s|\.]*',
+             r'\.?\d{2,4}[-|/|_|\.]?\d{1,2}[-|/|_|\.]?\d{1,2}',
              r'^\s*',
              r'^\.+']
 
@@ -28,18 +28,16 @@ def rename(path, file, execute=False):
   print('orginal: ' + file)
   
   # find date string
-  p = re.compile(r'(\d{2,4})[-|/|_|\.]?(\d{1,2})[-|/|_\.]?(\d{1,2})')
+  p = re.compile(r'(\d{2,4})[-|/|_|\.]?(\d{1,2})[-|/|_|\.]?(\d{1,2})')
   m = p.search(file)
-  if m:
-    root, ext = os.path.splitext(file)
-    new = root + ' (' + m.group(1) + m.group(2) + m.group(3) + ')' + ext
-  else:
-    new = file
+  root, ext = os.path.splitext(file)
+  new = root
 
   for pattern in _patterns:
     p = re.compile(pattern)
     new = p.sub('', new)
-  # print(os.path.join(path, file))
+  if m:
+    new = new + ' (' + m.group(1) + m.group(2) + m.group(3) + ')' + ext
   print('    new: ' + new)
   if execute:
     os.rename(os.path.join(path, file), os.path.join(path, new))
