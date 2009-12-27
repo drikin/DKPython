@@ -33,7 +33,12 @@ class untitled(unittest.TestCase):
                   "2009.Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi",
                   "2009...Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi",
                   "2009.10.Shanghai.Super.Concert.091224.SDTV.XViD-DokGoDie.avi",
-                  "Abc Def (2009.01.01).mp4"
+                  "Abc Def (2009.01.01).mp4",
+                  "のだめカンタービレ（第5話）「さよなら巨匠!恋の学園祭オケ対決!!」[1920x1080p x.264 AAC].mkv",
+                  "(TV バラエティ お笑い) 20091213 スクール革命 #35 東国原知事＆神戸蘭子宮崎グルメ旅で大暴走 アンタ山崎・オードリー 内村光良.avi",
+                  "【TV バラエティ お笑い】 20091216 #30 爆笑レッドシアター ジョセフィーヌ登場！狩野アゲハに超災難 内村光良 (20091216)",
+                  "London Hearts (2009.12.22).mp4",
+                  "Asami Mitsuhiko ep09 finale (1280x720 x264).mp4"
                   ]
     
     os.mkdir(test_dir)
@@ -44,7 +49,7 @@ class untitled(unittest.TestCase):
     for (root, dirs, files) in os.walk(test_dir):
       for file in files:
         rename.rename(root, file, False)
-      
+              
     for file_name in file_names:
       os.remove(os.path.join(test_dir, file_name))
     os.rmdir(test_dir)
