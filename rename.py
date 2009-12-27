@@ -15,7 +15,7 @@ help_message = '''
 The help message goes here.
 '''
 _patterns = [r'^\s*',
-             r'\s?[\(|\[](.*?)[\)|\]][\s|\.]*',
+             r'\s?[\(|\[](.*?)[\)|\]][\s|\.]*?',
              r'\.?\d{2,4}[-|/|_|\.]?\d{1,2}[-|/|_|\.]?\d{1,2}',
              r'^\s*',
              r'^\.+']
@@ -38,6 +38,8 @@ def rename(path, file, execute=False):
     new = p.sub('', new)
   if m:
     new = new + ' (' + m.group(1) + m.group(2) + m.group(3) + ')' + ext
+  else:
+    new = new + ext
   print('    new: ' + new)
   if execute:
     os.rename(os.path.join(path, file), os.path.join(path, new))

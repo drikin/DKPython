@@ -38,7 +38,8 @@ class untitled(unittest.TestCase):
                   "(TV バラエティ お笑い) 20091213 スクール革命 #35 東国原知事＆神戸蘭子宮崎グルメ旅で大暴走 アンタ山崎・オードリー 内村光良.avi",
                   "【TV バラエティ お笑い】 20091216 #30 爆笑レッドシアター ジョセフィーヌ登場！狩野アゲハに超災難 内村光良 (20091216)",
                   "London Hearts (2009.12.22).mp4",
-                  "Asami Mitsuhiko ep09 finale (1280x720 x264).mp4"
+                  "Asami Mitsuhiko ep09 finale (1280x720 x264).mp4",
+                  "Tunnels no Minasan no Okagedeshita [XviD 704x396 mp3].avi"
                   ]
     
     os.mkdir(test_dir)
